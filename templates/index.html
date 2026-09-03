@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Generator & Debugger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-robot"></i> AI Code Generator & Debugger</h1>
+            <div class="theme-toggle">
+                <i class="fas fa-moon theme-icon moon"></i>
+                <i class="fas fa-sun theme-icon sun"></i>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="generator">
+                <i class="fas fa-sparkles"></i> Code Generator
+            </button>
+            <button class="tab" data-tab="debugger">
+                <i class="fas fa-bug"></i> Debugger
+            </button>
+            <button class="tab" data-tab="chat">
+                <i class="fas fa-comments"></i> Chat
+            </button>
+        </div>
+
+        <!-- Generator Tab -->
+        <div id="generator" class="tab-panel active">
+            <div class="input-group">
+                <textarea id="gen-input" placeholder="Describe what you want to build... (e.g., 'write a bubble sort function')"></textarea>
+                <button id="gen-submit" class="submit-btn">
+                    <i class="fas fa-magic"></i> Generate Code
+                </button>
+            </div>
+            <div id="gen-output" class="output"></div>
+        </div>
+
+        <!-- Debugger Tab -->
+        <div id="debugger" class="tab-panel">
+            <div class="input-group">
+                <textarea id="debug-code" placeholder="Paste your broken Python code here..."></textarea>
+                <textarea id="debug-error" placeholder="Paste error message here (optional)..."></textarea>
+                <button id="debug-submit" class="submit-btn">
+                    <i class="fas fa-wrench"></i> Debug Code
+                </button>
+            </div>
+            <div id="debug-output" class="output"></div>
+        </div>
+
+        <!-- Chat Tab -->
+        <div id="chat" class="tab-panel">
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input-group">
+                <textarea id="chat-input" placeholder="Ask about Python, code, debugging... (Shift+Enter for new line)"></textarea>
+                <button id="chat-submit" class="chat-submit">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
