@@ -84,7 +84,12 @@ class AICodeApp {
             const result = await response.json();
  
             if (!response.ok || result.error) {
-                throw new Error(result.message || 'Unknown server error');
+                // FastAPI wraps errors as {detail: {...}} or {detail: "text"}
+                const d = result.detail;
+                const msg = result.message
+                    || (d && typeof d === 'object' ? d.message : d)
+                    || 'Unknown server error';
+                throw new Error(msg);
             }
  
             this.sessions[sessionKey] = result.session_id;
