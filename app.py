@@ -36,6 +36,9 @@ if not GROQ_API_KEY:
 
 client = Groq(api_key=GROQ_API_KEY)
 
+# Groq retired llama-3.3-70b-versatile; override with GROQ_MODEL env var if needed
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+
 
 class GenerateRequest(BaseModel):
     prompt: str
@@ -72,9 +75,9 @@ async def groq_chat(prompt: str, history: list = None, timeout: int = 30) -> str
         loop = asyncio.get_event_loop()
         response = await asyncio.wait_for(
             loop.run_in_executor(None, lambda: client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model=GROQ_MODEL,
                 messages=messages,
-                max_tokens=4096,
+                max_tokens=8192,
                 temperature=0.1,
             )),
             timeout=timeout
